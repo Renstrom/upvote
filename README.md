@@ -16,7 +16,7 @@ The action should perform the following:
 * This enables people to upvote projects, by inserting :thumbsup: on the comments.
 * The upvotes are collected and visualized in a table, in the form of a “Top-list”.
  
-We aim to fulfill the following criteria:
+We aim to fulfill the following criteria: 
  
 * Deadline before April 6, 2021 (in order to be useful for the course)
 * The automation task produces a PR status or issue / PR comment and points to a generated page with valuable additional information
