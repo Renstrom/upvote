@@ -1,6 +1,7 @@
 # Course Automation: Upvote other students’ work
  
 ## Members
+
 - [Dina Lerjevik](https://github.com/dmariel) (lerjevik@kth.se)
 - [Anders Renström](https://github.com/Renstrom) (renstr@kth.se)
  
