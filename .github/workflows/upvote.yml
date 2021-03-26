@@ -11,6 +11,7 @@ jobs:
       runs-on: ubuntu-latest
       name: Create an issue if none exist
       steps:
+        - uses: actions/checkout@v2
         - uses: nickderobertis/check-if-issue-exists-action@master
           name: Check if Issue Exists
           id: check_if_issue_exists
