@@ -18,7 +18,7 @@ jobs:
           with:
             repo: Renstrom/upvote
             token: ${{ secrets.GITHUB_TOKEN }}
-            title: Upvote projects - Course Automation
+            title: "Upvote projects - Course Automation"
         - name: Create Issue    
           if: steps.check_if_issue_exists.outputs.exists == 'false'
           uses: JasonEtco/create-an-issue@v2
@@ -28,9 +28,9 @@ jobs:
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
-            issue-number: 9
+            issue-number: ${{ steps.issue.outputs.number }}
             body: |
-              Repo name - ${{ github.event.pull_request.title }}
-              Repo path - ${{ github.event.pull_request.html_url }}
+              Title of pull request - ${{ github.event.pull_request.title }}
+              URL - ${{ github.event.pull_request.html_url }}
 
 
