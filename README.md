@@ -23,4 +23,4 @@ We aim to fulfill the following criteria:
 * The automation task is reusable in other courses
 * The task runs on a standard platform (GitHub Action)
 * The task is praised by the other students of this course
-* The code for the task is available and the repo is well documented
+* The code for the task is available and the repo is well documented 
