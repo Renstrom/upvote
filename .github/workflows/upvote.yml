@@ -39,5 +39,7 @@ jobs:
         - name: Comment on PR
           uses: thollander/actions-comment-pull-request@master
           with:
-            message: 'An issue has been created: ${{ steps.issue.outputs.number }}'
+            message: 'An issue has been created. People can now upvote your project!: #${{ steps.issue.outputs.number }}'
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
