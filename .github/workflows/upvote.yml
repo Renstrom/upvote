@@ -9,7 +9,7 @@ jobs:
     
       if: ${{ github.event.label.name == 'Upvote - Course Automation' }}
       runs-on: ubuntu-latest
-      name: Create an issue if none exist
+      name: Create an issue if none exists
       steps:
         - uses: actions/checkout@v2
         - uses: nickderobertis/check-if-issue-exists-action@master
@@ -34,6 +34,12 @@ jobs:
             body: |
               Title of pull request - ${{ github.event.pull_request.title }}
               URL - ${{ github.event.pull_request.html_url }}
-              head - ${{ github.event.pull_request.head }}
+        - name: Checkout
+          uses: actions/checkout@v1
+        - name: Comment on PR
+          uses: thollander/actions-comment-pull-request@master
+          with:
+            message: 'An issue has been created: ${{ steps.issue.outputs.number }}'
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
