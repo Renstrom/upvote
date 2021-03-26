@@ -16,7 +16,7 @@ jobs:
           name: Check if Issue Exists
           id: check_if_issue_exists
           with:
-            repo: dmariel/devops-course
+            repo: Renstrom/upvote
             token: ${{ secrets.GITHUB_TOKEN }}
             title: Upvote projects - Course Automation
         - name: Create Issue    
@@ -30,7 +30,7 @@ jobs:
           with:
             issue-number: 9
             body: |
-              ${{ github.event.pull_request.title }}
-              ${{ github.event.path }}
+              Repo name - ${{ github.event.pull_request.title }}
+              Repo path - ${{ github.event.path }}
 
 
