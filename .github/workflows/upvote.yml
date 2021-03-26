@@ -32,14 +32,14 @@ jobs:
           with:
             issue-number: ${{ steps.issue.outputs.number }}
             body: |
-              Title of pull request - ${{ github.event.pull_request.title }}
-              URL - ${{ github.event.pull_request.html_url }}
+              Title of pull request: ${{ github.event.pull_request.title }}
+              Link: ${{ github.event.pull_request.html_url }}
         - name: Checkout
           uses: actions/checkout@v1
         - name: Comment on PR
           uses: thollander/actions-comment-pull-request@master
           with:
-            message: 'An issue has been created. People can now upvote your project!: #${{ steps.issue.outputs.number }}'
+            message: 'A comment has been added to the following thread: #${{ steps.issue.outputs.number }}. People can now upvote your project!'
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
