@@ -1,2 +1,2 @@
-# upvote
-Upvote Github Action
+# Upvote
+Upvote Github Action 
