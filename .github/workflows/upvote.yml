@@ -28,9 +28,9 @@ jobs:
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
-            issue-number: 9
+            issue-number: ${{ steps.issue.outputs.number }}
             body: |
-              Repo name - ${{ github.event.pull_request.title }}
-              Repo path - ${{ github.event.pull_request.html_url }}
+              Title of pull request - ${{ github.event.pull_request.title }}
+              URL - ${{ github.event.pull_request.html_url }}
 
 
