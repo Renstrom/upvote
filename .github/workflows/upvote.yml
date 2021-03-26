@@ -19,6 +19,7 @@ jobs:
             repo: Renstrom/upvote
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
+            labels: wontfix
         - name: Create Issue    
           if: steps.check_if_issue_exists.outputs.exists == 'false'
           uses: JasonEtco/create-an-issue@v2
