@@ -19,7 +19,7 @@ jobs:
             repo: Renstrom/upvote
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
-            labels: wontfix
+            labels:
         - name: Create Issue    
           uses: JasonEtco/create-an-issue@v2
           env:
