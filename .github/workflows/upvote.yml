@@ -27,9 +27,6 @@ jobs:
           with:
               update_existing: true
           id: issue
-        - name: Get README-title
-            id: get_readme_title
-            run: echo "::set-output name=out::$(head -1 README.md)"
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
@@ -37,7 +34,6 @@ jobs:
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
-              Title of README: ${{ steps.get_readme_title.outputs.out }}
 
               You can view the repository [here](https://github.com/${{ github.repository }})
         - name: Checkout
