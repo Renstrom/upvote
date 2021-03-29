@@ -16,7 +16,7 @@ jobs:
           name: Check if Issue Exists
           id: check_if_issue_exists
           with:
-            repo: Renstrom/upvote
+            repo: ${{ github.repository }}
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
@@ -34,10 +34,8 @@ jobs:
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
-              Link to repo[here](http://github.com/${{ github.repository }}/${GITHUB_REF##*/})
 
-
-              You can view the repository [here](https://github.com/${{ github.repository }})
+              You can view the repository [here](https://github.com/${{ github.repository }}/tree/${{ github.head_ref }})
         - name: Checkout
           uses: actions/checkout@v1
         - name: Comment on PR
