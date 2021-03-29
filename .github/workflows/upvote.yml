@@ -34,7 +34,7 @@ jobs:
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
-              Link to pull reques testt: ${{ github.event.pull_request.repo.branches_url}}
+              Link to repo[here](http://github.com/${{ github.repository }}/${GITHUB_REF##*/})
 
               You can view the repository [here](https://github.com/${{ github.repository }})
         - name: Checkout
