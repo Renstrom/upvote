@@ -27,6 +27,12 @@ jobs:
           with:
               update_existing: true
           id: issue
+        - id: files
+          uses: jitterbit/get-changed-files@v1
+        - run: |
+            for changed_file in ${{ steps.files.outputs.all }}; do
+              echo "Do something with this ${changed_file}."
+            done
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
