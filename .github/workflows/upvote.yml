@@ -16,9 +16,7 @@ jobs:
           name: Check if Issue Exists
           id: check_if_issue_exists
           with:
-
             repo: ${{ github.repository }}
-
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
