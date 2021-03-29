@@ -27,6 +27,8 @@ jobs:
           with:
               update_existing: true
           id: issue
+        - id: file_changes
+          uses: trilom/file-changes-action@v1.2.3
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
