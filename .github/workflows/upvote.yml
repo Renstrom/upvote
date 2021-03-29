@@ -16,7 +16,7 @@ jobs:
           name: Check if Issue Exists
           id: check_if_issue_exists
           with:
-            repo: Renstrom/upvote
+            repo: ${{ github.repository }}
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
@@ -30,7 +30,7 @@ jobs:
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
-            issue-number: 36
+            issue-number: ${{ steps.issue.outputs.number }}
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
