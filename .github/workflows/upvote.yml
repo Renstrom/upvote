@@ -34,6 +34,6 @@ jobs:
             body: |
               Title of pull request - ${{ github.event.pull_request.title }}
               URL - ${{ github.event.pull_request.html_url }}
-              head - ${{ github.event.pull_request.head }}
+              head - ${{ github.event.pull_request.head.url }}
 
 
