@@ -20,17 +20,10 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
-        - name: Create Issue    
-          uses: JasonEtco/create-an-issue@v2
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-              update_existing: true
-          id: issue
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
-            issue-number: ${{ steps.issue.outputs.number }}
+            issue-number: 36
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
