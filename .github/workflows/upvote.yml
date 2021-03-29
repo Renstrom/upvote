@@ -7,7 +7,7 @@ on:
 jobs:
   new_issue:
     
-      if: ${{ github.event.label.name == 'Upvote - Course Automation' }}
+      if: ${{ github.event.label.name == 'Upvote - Course Automation' }} && ${{ github.repository == Renstrom/upvote}}
       runs-on: ubuntu-latest
       name: Create an issue if none exists
       steps:
@@ -20,6 +20,13 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
+        - name: Create Issue    
+          uses: JasonEtco/create-an-issue@v2
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+              update_existing: true
+          id: issue
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
