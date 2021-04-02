@@ -1,8 +1,9 @@
 name: update
 
-on: 
-  issue_comment:
-    types: [edited]
+on:
+  schedule:
+    - cron:  '*/5 * * * *'
+    
 jobs:
   check for reaction:
     runs-on: ubuntu-latest
