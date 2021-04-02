@@ -12,7 +12,7 @@ jobs:
         id: fc
         with:
           issue-number: 36
-          comment-author: 'github-actions[bot]'
+          body-includes: "Upvote - Course Automation"
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
@@ -32,4 +32,5 @@ jobs:
             Toplist (updated every 2 min):
 
             ...
+
           reactions: 
