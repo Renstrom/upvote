@@ -27,10 +27,6 @@ jobs:
           with:
               update_existing: true
           id: issue
-        - id: file_changes
-          uses: trilom/file-changes-action@v1.2.3
-          with:
-          
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
@@ -38,9 +34,7 @@ jobs:
             body: |
               Title of pull request: ${{ github.event.pull_request.title }}
               Link to pull request: ${{ github.event.pull_request.html_url }}
-              You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})
-
-              
+              You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})      
         - name: Checkout
           uses: actions/checkout@v1
         - name: Comment on PR
