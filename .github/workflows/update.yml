@@ -13,6 +13,8 @@ jobs:
         with:
           issue-number: 36
           comment-author: 'github-actions[bot]'
+      - name: Print comment-ID
+        run: echo "${{ steps.fc.outputs.comment-id }}"
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
