@@ -1,11 +1,36 @@
-name: Do Something That Needs Scheduled
+name: Update table every 5 minutes
 on:
   schedule:
     - cron:  '*/5 * * * *'
 jobs:
   build:
-    name: Run Some Scheduled Thing
+    name: Update first comment
     runs-on: ubuntu-latest
     steps:
-      - name: Do Something
-        run: echo Doing Something...
+      - name: Find first comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: 36
+          comment-author: 'github-actions[bot]'
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.number }}
+          body: |
+            This issue enables students to upvote other students' work, in order to facilitate for students to fulfill the criteria: "The task is praised by the other students of this course", which is currently one of the criteria for "Course Automation".
+
+            Issues are created automatically when the label ``Upvote - Course Automation`` is added to a pull request.
+
+            1. When your work is finished, make sure to include the label ``Upvote - Course Automation`` when you create the pull request.
+            2. A summary of your work (README-title and URL to repository) will be published in this thread, in the form of a comment. You will recieve a confirmation once this is done.
+            3. You and other students can upvote the projects in this thread, by adding a 👍 to the projects that you like the best.
+
+            **Please do not create a comment in this thread on your own - this is handled automatically!**
+
+            Toplist (updated every 5 min):
+
+            ...
+
+          reactions: 
