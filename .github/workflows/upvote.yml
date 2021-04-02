@@ -45,9 +45,6 @@ jobs:
         - name: Test json echo
           run: | 
             echo "$(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/Renstrom/upvote/issues/36/comments)"
+            echo "$(curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/comments/808535786/reactions)"
 
-
-            
-
-        
 
