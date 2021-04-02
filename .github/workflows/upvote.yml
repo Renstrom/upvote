@@ -29,6 +29,8 @@ jobs:
           id: issue
         - id: file_changes
           uses: trilom/file-changes-action@v1.2.3
+          with:
+          
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
@@ -46,5 +48,12 @@ jobs:
           with:
             message: 'A comment has been added to the following thread: #${{ steps.issue.outputs.number }}. People can now upvote your project!'
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: Test json echo
+          run: | 
+            echo `curl \ 
+            -H "Accept: application/vnd.github.squirrel-girl-preview" \ 
+            https://api.github.com/repos/Renstrom/upvote/issues/36/reactions`
+            
+
         
 
