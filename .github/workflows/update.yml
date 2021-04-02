@@ -12,7 +12,7 @@ jobs:
         id: fc
         with:
           issue-number: 36
-          body-includes: "Upvote - Course Automation"
+          body-includes: "Course"
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
