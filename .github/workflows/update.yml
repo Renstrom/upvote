@@ -1,7 +1,7 @@
-name: Update table every 5 minutes
+name: Update table every 2 minutes
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '*/2 * * * *'
 jobs:
   build:
     name: Update first comment
@@ -17,7 +17,7 @@ jobs:
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          comment-id: ${{ steps.fc.outputs.number }}
+          comment-id: ${{ fc }}
           body: |
             This issue enables students to upvote other students' work, in order to facilitate for students to fulfill the criteria: "The task is praised by the other students of this course", which is currently one of the criteria for "Course Automation".
 
@@ -29,7 +29,7 @@ jobs:
 
             **Please do not create a comment in this thread on your own - this is handled automatically!**
 
-            Toplist (updated every 5 min):
+            Toplist (updated every 2 min):
 
             ...
 
