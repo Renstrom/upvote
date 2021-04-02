@@ -12,7 +12,7 @@ jobs:
         id: fc
         with:
           issue-number: 36
-          body-includes: "Course"
+          comment-author: 'github-actions[bot]'
 
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
@@ -32,5 +32,4 @@ jobs:
             Toplist (updated every 2 min):
 
             ...
-
-          reactions: 
+          reactions: eyes
