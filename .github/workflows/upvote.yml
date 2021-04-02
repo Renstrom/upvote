@@ -47,7 +47,7 @@ jobs:
           run: |
         
             curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{ steps.issue.outputs.number }}/comments | jq -c '.[].id' | while read id ; do
-                echo "$((curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq -c '.[] | select( .content =="+1" )').length())"
+                echo "$(curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq -c '.[] | select( .content =="+1" )').length()"
             done
            
     
