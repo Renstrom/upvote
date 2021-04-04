@@ -35,3 +35,4 @@ jobs:
 
             ...
           comment-id: ${{ steps.fc.outputs.comment-id }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
