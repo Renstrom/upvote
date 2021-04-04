@@ -35,4 +35,3 @@ jobs:
 
             ...
           comment-id: ${{ steps.fc.outputs.comment-id }}
-          reactions: eyes
