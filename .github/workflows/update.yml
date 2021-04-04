@@ -17,9 +17,9 @@ jobs:
         run: echo "${{ steps.fc.outputs.comment-id }}"
 
       - name: Update comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: jungwinter/comment@v1
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          type: edit
           body: |
             This issue enables students to upvote other students' work, in order to facilitate for students to fulfill the criteria: "The task is praised by the other students of this course", which is currently one of the criteria for "Course Automation".
 
@@ -34,4 +34,5 @@ jobs:
             Toplist (updated every 2 min):
 
             ...
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           reactions: eyes
