@@ -34,5 +34,5 @@ jobs:
             Toplist (updated every 5 min):
 
             ...
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          comment_id: ${{ steps.fc.outputs.comment-id }}
           token: ${{ secrets.GITHUB_TOKEN }}
