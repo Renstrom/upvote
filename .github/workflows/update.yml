@@ -1,7 +1,7 @@
-name: Update table every 2 minutes
+name: Update table every 5 minutes
 on:
   schedule:
-    - cron:  '*/2 * * * *'
+    - cron:  '* * * * *'
 jobs:
   build:
     name: Update first comment
