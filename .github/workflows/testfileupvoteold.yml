@@ -75,15 +75,10 @@ jobs:
       - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}); done <text.txt #Lista med info
 
       - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}) >> commitID.txt; done <text.txt #Lägg in all info i commitID.txt
-      - uses: pCYSl5EDgo/cat@master
-        id: hello
-        with:
-                path: commitID.txt
-      - run: echo $TEXT #Lägg in commitID.txt i variabeln $TEXT (används ej just nu)
-        env:
-          TEXT: ${{ steps.hello.outputs.text }}
 
-      - run: while read t; do echo $(t=${t#*}; echo ${t#:*}); done <commitID.txt #Lista med commit-ID
+      - run: while read t; do echo $(t=${t#*}; echo ${t%:}); done <commitID.txt #Lista med commit-ID --> ANVÄND
+
+
               
 
 
