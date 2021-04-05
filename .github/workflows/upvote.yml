@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ steps.issue.outputs.number }}
+          issue-number: ${{  needs.new_issue.outputs.output1}}
           body: |
             Title of pull request: ${{ github.event.pull_request.title }}
             Link to pull request: ${{ github.event.pull_request.html_url }}
@@ -59,13 +59,13 @@ jobs:
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
-          message: 'A comment has been added to the following thread: #${{ steps.issue.outputs.number }}. People can now upvote your project!'
+          message: 'A comment has been added to the following thread: #${{  needs.new_issue.outputs.output1 }}. People can now upvote your project!'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Test json echo
         id: commentid 
         run: |
       
-          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{ steps.issue.outputs.number }}/comments | jq -c '.[].id' | while read id ; do
+          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
               echo "'{${id}:$( curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(echo 'curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/' | awk '{ print substring($0, 0, 50)}' ) }'"
           done
            
