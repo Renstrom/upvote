@@ -64,6 +64,7 @@ jobs:
       - name: path
         run:
           echo $(cat /github/home/data.txt)
+          echo $PWD
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
