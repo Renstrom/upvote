@@ -33,7 +33,7 @@ jobs:
         id: issue
       - name: Send issue-id
         run: |
-          echo "${{  needs.new_issue.outputs.output1  }}" >> /github/home/data.txt 
+          echo "${{  needs.new_issue.outputs.output1  }}" >> data.txt 
           
   first_comment:
     needs: new_issue
