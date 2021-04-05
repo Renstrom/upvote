@@ -60,8 +60,7 @@ jobs:
         uses: actions/checkout@v1
       - name: path
         run:
-          echo $(cat /github/home/data.txt)
-          echo "mypath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo pwd
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
