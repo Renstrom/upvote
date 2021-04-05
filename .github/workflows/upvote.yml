@@ -41,7 +41,7 @@ jobs:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: Toplist (Updated every 5 min)
 
-        if: ${{steps.exist.outpouts.comment-id == 0}} 
+        if: ${{steps.exist.outputs.comment-id == 0}} 
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
