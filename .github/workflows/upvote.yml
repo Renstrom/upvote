@@ -30,7 +30,7 @@ jobs:
 
   first_comment:
   
-    if: github.run_number = 1
+    if: github.run_number == 1
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
