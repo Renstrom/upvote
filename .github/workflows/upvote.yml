@@ -35,10 +35,10 @@ jobs:
       name: Create first comment
       steps:
       - uses: peter-evans/create-or-update-comment@v1
-      with:
-      issue-number: ${{ steps.issue.outputs.number }}
-      body: |
-        The top-list will be available here once reactions are added to the projects in this thread!
+        with:
+        issue-number: ${{ steps.issue.outputs.number }}
+        body: |
+          The top-list will be available here once reactions are added to the projects in this thread!
 
   other_comments:
 
