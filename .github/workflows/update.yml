@@ -9,6 +9,9 @@ jobs:
     name: Update first comment
     runs-on: ubuntu-latest
     steps:
+      - name: path
+        run:
+          echo $(cat /github/home/data.txt)
       - name: Find first comment
         uses: peter-evans/find-comment@v1
         id: fc
