@@ -29,7 +29,7 @@ jobs:
         id: issue
 
   first_comment:
-  
+    needs: new_issue
     if: github.run_number == 1
     runs-on: ubuntu-latest
     name: Create first comment
@@ -41,7 +41,7 @@ jobs:
             The top-list will be available here once reactions are added to the projects in this thread!
 
   other_comments:
-
+    needs: [new_isse, first_comment]
     runs-on: ubuntu-latest
     name: Create comment
     steps:
