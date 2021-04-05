@@ -78,7 +78,8 @@ jobs:
 
       - run: | 
           while read t; do 
-            if [$(echo $t | cut -d: -f2) -gt 0]
+            let a=$(echo $t | cut -d: -f2)
+            if [$a -gt 0]
             then
               echo $t >> result.txt
             fi
