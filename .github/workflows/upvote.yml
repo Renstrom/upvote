@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ new_issue.steps.issue.outputs.number }}
+          issue-number: ${{ steps.issue.outputs.number }}
           body: |
             The top-list will be available here once reactions are added to the projects in this thread!
 
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ new_issue.steps.issue.outputs.number }}
+          issue-number: ${{ steps.issue.outputs.number }}
           body: |
             Title of pull request: ${{ github.event.pull_request.title }}
             Link to pull request: ${{ github.event.pull_request.html_url }}
