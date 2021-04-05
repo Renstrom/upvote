@@ -74,10 +74,9 @@ jobs:
   update_comment:
     needs: new_issue
     if: github.event_name == "schedule"
-    name: Update table every 5 minutes
     runs-on: ubuntu-latest
+    name: Update table every 5 minutes
     steps:
-      - name: path
       - name: Find first comment
         uses: peter-evans/find-comment@v1
         id: fc
