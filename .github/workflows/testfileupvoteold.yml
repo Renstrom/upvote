@@ -74,9 +74,9 @@ jobs:
 
       - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}); done <text.txt #Lista med info
 
-      - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}) >> info.txt; done <text.txt #Lägg in all info i commitID.txt
+      - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}) >> info.txt; done <text.txt #Lägg in all info i info.txt
 
-      - run: while read t; do echo $(t=${t#*}; echo ${t%\:*}); done <info.txt #Lista med commit-ID --> ANVÄND
+      - run: while read t; do echo $(t=${t#*}; echo ${t%\:%}); done <info.txt #Lista med commit-ID --> ANVÄND
 
 
 
