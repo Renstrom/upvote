@@ -81,7 +81,8 @@ jobs:
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
-      - run: echo sed 's/.*(\{.*\:)/\1/' text.txt 
+      - run: echo $TEXT | grep -Po "(?<=\{).*?(?=\:)"
+
 
 
 
