@@ -83,8 +83,11 @@ jobs:
 
       - run: while read t; do echo $(t=${t#*'{}; echo ${t%}'*}); done <text.txt
 
-      - run: echo "$TEXT" | grep -Po  "'{ \K(.*)(?= }' )"
+      - run: |
           
+          IFS='''
+          array=( $TEXT )
+          echo "value = ${array[2]}"         
       
 
 
