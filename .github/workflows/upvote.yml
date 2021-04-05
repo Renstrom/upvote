@@ -5,7 +5,8 @@ name: Upvote
 on:
   pull_request_target: 
     types: [labeled]
-
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
   new_issue:
     
@@ -34,7 +35,7 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{github.run_number == 1}}
+    if: ${{github.run_number == 1}} && ${{github.event_name == 'pull request target'}}
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
@@ -46,6 +47,7 @@ jobs:
 
   other_comments:
     needs: new_issue
+    if: ${{github.event_name == 'pull request target'}}
     runs-on: ubuntu-latest
     name: Create comment
     steps:
@@ -56,12 +58,6 @@ jobs:
             Title of pull request: ${{ github.event.pull_request.title }}
             Link to pull request: ${{ github.event.pull_request.html_url }}
             You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})       
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: path
-        run:
-          echo $(cat /github/home/data.txt)
-          echo "mypath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
@@ -75,6 +71,35 @@ jobs:
               echo "'{${id}:$( curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'"
           done
            
-    
+  updade_comment:
+    needs: new_issue
+    if: ${{github.event_name != 'pull request target'}}
+    name: Update table every 5 minutes
+    runs-on: ubuntu-latest
+    steps:
+      - name: path
+        run:
+          echo $PWD
+      - name: Find first comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number:  ${{  needs.new_issue.outputs.output1}}
+          comment-author: 'github-actions[bot]'
+      - name: Print comment-ID
+        run: echo "${{ steps.fc.outputs.comment-id }}"
+
+      - name: Update comment
+        uses: jungwinter/comment@v1
+        with:
+          type: edit
+          body: |
+            
+            Toplist (Updated every 5 min):
+
+            ...
+          comment_id: ${{ steps.fc.outputs.comment-id }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
     
 
