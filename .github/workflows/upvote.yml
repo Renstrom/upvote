@@ -31,14 +31,7 @@ jobs:
         with:
             update_existing: true
         id: issue
-      - name: Send issue-id
-        uses: DamianReeves/write-file-action
-        with:
-        path: ../id.txt
-        contents: |
-          echo "Hello World!"
-        write-mode: append
-        
+              
   first_comment:
     needs: new_issue
     if: ${{github.run_number == 1}}
@@ -68,7 +61,7 @@ jobs:
       - name: path
         run:
           echo $(cat /github/home/data.txt)
-          echo $PWD
+          echo "mypath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
