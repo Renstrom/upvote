@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Create an issue if none exists
     outputs:
-          output1: ${{ steps.issue.outputs }}
+          output1: ${{ steps.issue.outputs.number }}
     steps:
       - uses: actions/checkout@v2
       - uses: nickderobertis/check-if-issue-exists-action@master
