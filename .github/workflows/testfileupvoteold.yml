@@ -91,7 +91,7 @@ jobs:
           done < info.txt
           while read p; do 
               echo $p
-          done < result.txt
+          done < output.txt
 
       
 
