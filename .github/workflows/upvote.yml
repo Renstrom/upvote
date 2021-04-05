@@ -79,7 +79,6 @@ jobs:
     steps:
       - name: path
         run:
-          echo $PWD
           echo ${{github.event_name}}
       - name: Find first comment
         uses: peter-evans/find-comment@v1
