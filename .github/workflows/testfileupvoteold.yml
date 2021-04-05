@@ -87,7 +87,7 @@ jobs:
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
-              e=$((https://github.com/repos/${{github.repository}}/issues/${{needs.new_issue.outputs.output1}}/comments/${b}))
+              e=$((github.com/repos/${{github.repository}}/issues/${{needs.new_issue.outputs.output1}}/comments/${b}))
               echo ${d} ${e} ${a} >> output.txt
             fi
           done < info.txt
