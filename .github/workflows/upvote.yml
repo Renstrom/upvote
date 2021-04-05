@@ -28,6 +28,7 @@ jobs:
               update_existing: true
           id: issue
         - name: Create first comment
+          if: steps.check_if_issue_exists.outputs.exists == 'false'
           uses: peter-evans/create-or-update-comment@v1
           with:
             issue-number: ${{ steps.issue.outputs.number }}
