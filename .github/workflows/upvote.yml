@@ -37,12 +37,11 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}} 
+    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}} && ${{needs.new_issue.outputs.output2}} == 0
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
       - uses: actions/checkout@v2  
-        if: ${{needs.new_issue.outputs.output2}} == 0
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
