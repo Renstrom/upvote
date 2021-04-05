@@ -27,12 +27,13 @@ jobs:
         id: issue
       - name: Find Comment
         uses: peter-evans/find-comment@v1.2.0
+        id: fc
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: Toplist (Updated every 5 min)
-        id: fc
+        
               
   first_comment:
     needs: new_issue
