@@ -27,17 +27,13 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}} &&
+    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}} 
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
       - uses: actions/checkout@v2  
-      - name: Check for first comment
-        id: amount
-        run: |
-          echo $(curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq '.' |  jq length)
-          echo "::set-output name=comments::$(curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }})"
-        if: ${{steps.amount.outputs.comments == 0}}
+      - name: check amount of issues
+        if: ${{$(curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }}) == 0}}
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
