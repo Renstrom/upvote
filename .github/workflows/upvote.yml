@@ -27,6 +27,19 @@ jobs:
           with:
               update_existing: true
           id: issue
+
+    first_comment:
+  
+        if: github.run_number = 1
+        - name: Create first comment
+          uses: peter-evans/create-or-update-comment@v1
+          with:
+            issue-number: ${{ steps.issue.outputs.number }}
+            body: |
+              The top-list will be available here once reactions are added to the projects in this thread!
+
+    other_comments:
+
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
