@@ -34,7 +34,11 @@ jobs:
       runs-on: ubuntu-latest
       name: Create first comment
       steps:
+<<<<<<< HEAD
         - uses: peter-evans/create-or-update-comment@v1
+=======
+      - uses: peter-evans/create-or-update-comment@v1
+>>>>>>> c6200865ac7e2d5a56aebe1f51e51f69787ec0f8
         with:
         issue-number: ${{ steps.issue.outputs.number }}
         body: |
