@@ -114,7 +114,7 @@ jobs:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           comment-author: 'github-actions[bot]'
 
-      - name: | Update first comment ("Top-list")
+      - name: Update first comment ("Top-list")
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
