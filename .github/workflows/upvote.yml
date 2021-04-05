@@ -20,13 +20,20 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             title: "Upvote projects - Course Automation"
             labels:
-        - name: Create Issue    
+        - name: Create issue    
           uses: JasonEtco/create-an-issue@v2
           env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
               update_existing: true
           id: issue
+        - name: Create first comment
+          if: steps.check_if_issue_exists.outputs.exists == 'false'
+          uses: peter-evans/create-or-update-comment@v1
+          with:
+            issue-number: ${{ steps.issue.outputs.number }}
+            body: |
+              This is where the top-list will be displayed, once reactions are addedd to the projects visible in this thread!
         - name: Create comment
           uses: peter-evans/create-or-update-comment@v1
           with:
