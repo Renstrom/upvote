@@ -61,6 +61,9 @@ jobs:
             You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})       
       - name: Checkout
         uses: actions/checkout@v1
+      - name: path
+        run:
+          echo $(cat /github/home/data.txt)
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
