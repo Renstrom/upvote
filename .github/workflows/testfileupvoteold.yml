@@ -91,6 +91,7 @@ jobs:
               echo ${d} ${e} ${a} >> output.txt
             fi
           done < info.txt
+          echo test1
           while read p; do 
               echo $p
           done < output.txt
