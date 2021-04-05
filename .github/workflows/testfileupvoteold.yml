@@ -71,19 +71,18 @@ jobs:
           curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
               echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'" >> text.txt
           done
-      
+
+      - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}) >> commitID.txt; done <text.txt 
+
       - uses: pCYSl5EDgo/cat@master
         id: hello
         with:
-                path: text.txt
+                path: commitID.txt
       
-      - run: echo $TEXT
+      - run: echo $TEXT | cut -d':' -f 0
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
-      - run: while read t; do echo $(t=${t#*{}; echo ${t%}*}); done <text.txt 
-      - run: while read t; do echo $(t=${t#*{}; echo ${t%/}*}); done <text.txt 
-      - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}); done <text.txt 
 
               
 
