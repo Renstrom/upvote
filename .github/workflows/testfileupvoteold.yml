@@ -80,7 +80,7 @@ jobs:
       - run: | 
           while read t; 
             do $(echo cut -d':' -f1) 
-          done  
+          done < info.txt
 
 
 
