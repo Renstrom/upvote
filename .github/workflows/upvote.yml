@@ -37,7 +37,7 @@ jobs:
         id: exist
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
-          repository: github.repository
+          repository: ${{github.repository}}
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: The top-list will be available here once reactions are added to the projects in this thread!
           
