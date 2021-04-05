@@ -81,14 +81,10 @@ jobs:
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
-      - run: while read t; do echo $(t=${t#*'{}; echo ${t%}'*}); done <text.txt 
+      - run: while read t; do echo $(t=${t#*{}; echo ${t%:*}); done <text.txt 
 
-      - run: |
+      - run: while read t; do echo $(t=${t#*{}; echo ${t%}*}); done <text.txt 
 
-          export IFS="'"
-          for word in $TEXT; do
-            echo "$word"
-          done
               
 
 
