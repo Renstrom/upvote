@@ -32,7 +32,7 @@ jobs:
             update_existing: true
         id: issue
       - name: Send issue-id
-      - uses: DamianReeves/write-file-action
+        uses: DamianReeves/write-file-action
         with:
         path: ../id.txt
         contents: |
