@@ -79,7 +79,7 @@ jobs:
       - run: | 
           while read t; do 
             echo "test"
-            a=$(echo $t)
+            a=echo $t
             let b=$(echo $b | cut -d':' -f2)
             if [$b -gt 0]
             then
