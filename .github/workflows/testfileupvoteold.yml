@@ -79,7 +79,7 @@ jobs:
       - run: | 
           while read t; do 
             a=$(echo $t | cut -d':' -f2)
-            if [$a > 0]
+            if [[$a > 0]]
             then
               echo test
               b=$(echo $t | cut -d':' -f1)
