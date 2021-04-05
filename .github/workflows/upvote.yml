@@ -31,7 +31,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
-          issue-number: ${{ needs.new_issue.outputs.output1 }}
+          issue-number: ${{ steps.issue.outputs.number }}
           body-includes: Toplist (Updated every 5 min)
         
               
