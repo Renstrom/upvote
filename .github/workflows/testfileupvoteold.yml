@@ -68,8 +68,8 @@ jobs:
         id: commentid 
         run: |
 
-          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
-              echo "'{${id}:$( curl -s -H "Accept:application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length):title:$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'" >> text.txt
+          curl -s https://api.github.com/repos/${{ github.repository }}/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
+              echo "'{${id}:$( curl -s -H "Accept:application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/${{ github.repository }}/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length):title:$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'" >> text.txt
           done
 
       - run: while read t; do echo $(t=${t#*{}; echo ${t%\}*}); done <text.txt #Lista med info
@@ -85,13 +85,18 @@ jobs:
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
+<<<<<<< HEAD
               e=$([here](https://github.com/repos/${{github.repository}}/issues/${{needs.new_issue.outputs.output1}}/comments/${b}))
               echo ${d} ${e} ${a} >> output.txt
+=======
+              e=$(https://github.com/repos/${{github.repository}}/issues/${{needs.new_issue.outputs.output1}}/comments/${b})
+              echo ${d} [here]${e} ${a} >> result.txt
+>>>>>>> fcffce397a72900a2e7e093aecad5dedb4c77374
             fi
           done < info.txt
           while read p; do 
               echo $p
-          done < output.txt
+          done < result.txt
 
       
 
@@ -99,7 +104,6 @@ jobs:
 
 
               
-
 
 
 
