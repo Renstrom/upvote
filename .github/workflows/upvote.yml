@@ -31,7 +31,14 @@ jobs:
         with:
             update_existing: true
         id: issue
-              
+      - name: Send issue-id
+        uses: DamianReeves/write-file-action
+        with:
+        path: {{ github.workspace }}/id.txt
+        contents: |
+          echo "Hello World!"
+        write-mode: overwrite
+        
   first_comment:
     needs: new_issue
     if: ${{github.run_number == 1}}
@@ -58,9 +65,6 @@ jobs:
             You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})       
       - name: Checkout
         uses: actions/checkout@v1
-      - name: path
-        run:
-          echo pwd
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@master
         with:
