@@ -78,7 +78,7 @@ jobs:
 
       - run: | 
           while read t; do 
-            if [echo cut -d':' -f2 -gt 0]
+            if [cut -d':' -f2 -gt 0]
             then
               echo $t >> result.txt
             fi
