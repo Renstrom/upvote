@@ -32,7 +32,8 @@ jobs:
     name: Create first comment
     steps:
       - uses: actions/checkout@v2  
-      - uses: peter-evans/find-comment@v1.2.0
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1.2.0
         id: exist
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
