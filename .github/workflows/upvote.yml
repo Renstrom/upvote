@@ -34,38 +34,39 @@ jobs:
       runs-on: ubuntu-latest
       name: Create first comment
       steps:
-       - uses: peter-evans/create-or-update-comment@v1
-       with:
-       issue-number: ${{ steps.issue.outputs.number }}
-       body: |
+        - uses: peter-evans/create-or-update-comment@v1
+        with:
+        issue-number: ${{ steps.issue.outputs.number }}
+        body: |
           The top-list will be available here once reactions are added to the projects in this thread!
 
-    other_comments:
+  other_comments:
 
-      runs-on: ubuntu-latest
-      name: Create comment
-      steps:
-      - uses: peter-evans/create-or-update-comment@v1
-      with:
-      issue-number: ${{ steps.issue.outputs.number }}
-      body: |
-        Title of pull request: ${{ github.event.pull_request.title }}
-        Link to pull request: ${{ github.event.pull_request.html_url }}
-        You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})      
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Comment on PR
-        uses: thollander/actions-comment-pull-request@master
-        with:
-          message: 'A comment has been added to the following thread: #${{ steps.issue.outputs.number }}. People can now upvote your project!'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Test json echo
-        id: commentid 
-        run: |
+    runs-on: ubuntu-latest
+    name: Create comment
+    steps:
+    - uses: peter-evans/create-or-update-comment@v1
+    with:
+    issue-number: ${{ steps.issue.outputs.number }}
+    body: |
+      Title of pull request: ${{ github.event.pull_request.title }}
+      Link to pull request: ${{ github.event.pull_request.html_url }}
+      You can view the repository [here](https://github.com/${{github.event.pull_request.head.repo.full_name}}/tree/${{ github.head_ref }})      
       
-          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{ steps.issue.outputs.number }}/comments | jq -c '.[].id' | while read id ; do
-              echo "'{${id}:$( curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length)}'"
-          done
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Comment on PR
+      uses: thollander/actions-comment-pull-request@master
+      with:
+        message: 'A comment has been added to the following thread: #${{ steps.issue.outputs.number }}. People can now upvote your project!'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test json echo
+      id: commentid 
+      run: |
+    
+        curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{ steps.issue.outputs.number }}/comments | jq -c '.[].id' | while read id ; do
+            echo "'{${id}:$( curl -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length)}'"
+        done
            
     
     
