@@ -67,13 +67,23 @@ jobs:
         with:
           message: 'A comment has been added to the following thread: #${{  needs.new_issue.outputs.output1 }}. People can now upvote your project!'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      
+
+        
+           
+  update_comment:
+    needs: new_issue
+    
+    runs-on: ubuntu-latest
+    name: Update table every 5 minutes
+    steps:
       - name: Test json echo
         id: commentid 
         run: |
-          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
-              
+          curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do          
               echo ${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length):title:$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) >> output.txt
-              echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'"
           done
       - run: | 
           while read t; do 
@@ -83,56 +93,28 @@ jobs:
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
-              echo ${d} ${b} ${a} >> result.txt
+              e="[here](https://github.com/repos/${{ github.repository }}/issues/comments/${id})"
+              echo ${d} ${e} ${a} >> result.txt
             fi
           done < output.txt
-
-        
-
-      
-
-        
-           
-  update_comment:
-    needs: new_issue
-    if: github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    name: Update table every 5 minutes
-    steps:
-      - name: Find first comment
-        uses: peter-evans/find-comment@v1
-        id: fc
+        name: Read output.txt
+        id: package
+        uses: juliangruber/read-file-action@v1
         with:
-          issue-number:  ${{  needs.new_issue.outputs.output1}}
-          comment-author: 'github-actions[bot]'
-      - name: Print comment-ID
-        run: echo "${{ steps.fc.outputs.comment-id }}"
-
-      - name: Update comment
-        uses: jungwinter/comment@v1
-        with:
-          type: edit
-          body: |
-            
-            Toplist (Updated every 5 min):
-
-            ...
-          comment_id: ${{ steps.fc.outputs.comment-id }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Find first comment ("Top-list")
-        uses: peter-evans/find-comment@v1
-        id: fc
-        with:
-          issue-number: ${{ needs.new_issue.outputs.output1 }}
-          comment-author: 'github-actions[bot]'
+          path: ./result.txt
+      - name: Echo package.json
+        run: echo ${{ steps.package.outputs.content }}
 
       - name: Update first comment ("Top-list")
         uses: peter-evans/create-or-update-comment@v1
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
-            LÄGG IN TABELL HÄR
+            Toplist (Updated every 5 min):
+            ${{ steps.package.outputs.content }}        
+
+
+          edit-mode: replace
           reactions: 
     
 
