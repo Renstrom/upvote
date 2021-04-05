@@ -37,7 +37,7 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{needs.new_issue.outputs.output2 == 0}} && ${{github.event_name != 'schedule'}}
+    if: ${{needs.new_issue.outputs.output2 == 0}}
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
