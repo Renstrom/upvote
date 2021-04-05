@@ -32,7 +32,7 @@ jobs:
     name: Create first comment
     steps:
       - uses: actions/checkout@v2  
-      - uses: peter-evans/find-comment@v1
+      - uses: peter-evans/find-comment@v1.2.0
         id: exist
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
@@ -41,7 +41,7 @@ jobs:
           body-includes: The top-list will be available here once reactions are added to the projects in this thread!
           
         if: ${{steps.exist.outpouts.comment-id == 0}} 
-      - uses: peter-evans/create-or-update-comment@v1.2.0
+      - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body: |
