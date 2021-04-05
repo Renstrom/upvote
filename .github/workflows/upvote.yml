@@ -102,8 +102,6 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./result.txt
-      - name: Echo package.json
-        run: echo ${{ steps.package.outputs.content }}
       - name: Update first comment ("Top-list")
         uses: peter-evans/create-or-update-comment@v1
         with:
