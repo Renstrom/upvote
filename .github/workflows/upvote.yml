@@ -35,7 +35,7 @@ jobs:
       - name: Check for first comment
         id: amount
         run: |
-          echo curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }}
+          echo curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length
           echo "::set-output name=comments::$(curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }})"
         if: ${{steps.amount.outputs.comments == 0}}
       - uses: peter-evans/create-or-update-comment@v1
