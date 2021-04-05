@@ -34,15 +34,15 @@ jobs:
       - uses: actions/checkout@v2  
       - name: Find Comment
         uses: peter-evans/find-comment@v1.2.0
-        id: exist
+        id: fc
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: Toplist (Updated every 5 min)
       - run: |
-          echo  ${{steps.exist.outputs.comment-id}}
-        if: ${{steps.exist.outputs.comment-id}} == '0' 
+          echo  ${{steps.fc.outputs.comment-id}}
+        if: ${{steps.fc.outputs.comment-id}} == 0
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
