@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 name: Update table every 5 minutes
 on:
   schedule:
@@ -11,7 +13,7 @@ jobs:
         uses: peter-evans/find-comment@v1
         id: fc
         with:
-          issue-number: 51
+          issue-number: $(cat /github/home/data.txt) 
           comment-author: 'github-actions[bot]'
       - name: Print comment-ID
         run: echo "${{ steps.fc.outputs.comment-id }}"
