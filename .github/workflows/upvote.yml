@@ -10,6 +10,8 @@ jobs:
     if: ${{ github.event.label.name == 'Upvote - Course Automation' }} && ${{ github.repository == 'Renstrom/upvote'}}
     runs-on: ubuntu-latest
     name: Create an issue if none exists
+    outputs:
+          output1: ${{ steps.issue.outputs }}
     steps:
       - uses: actions/checkout@v2
       - uses: nickderobertis/check-if-issue-exists-action@master
@@ -36,7 +38,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ steps.issue.outputs.number }}
+          issue-number: ${{ needs.new_issue.outputs.output1 }}
           body: |
             The top-list will be available here once reactions are added to the projects in this thread!
 
