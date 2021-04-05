@@ -7,20 +7,6 @@ on:
     types: [labeled]
 
 jobs:
-  echo:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - run: echo -n -e "HELLO\n !\n World!" > text.txt
-
-    - uses: pCYSl5EDgo/cat@master
-      id: hello
-      with:
-        path: text.txt
-
-    - run: echo $TEXT
-      env:
-        TEXT: ${{ steps.hello.outputs.text }}
         
   new_issue:
     
@@ -81,7 +67,19 @@ jobs:
       - name: Test json echo
         id: commentid 
         run: |
-      
+
           curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
-              echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'"
+              echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'" > text.txt
           done
+      
+      - uses: pCYSl5EDgo/cat@master
+        id: hello
+        with:
+                path: text.txt
+      
+      - run: echo $TEXT
+        env:
+          TEXT: ${{ steps.hello.outputs.text }}
+
+
+
