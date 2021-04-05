@@ -4,7 +4,7 @@ name: Upvote
 
 on:
   pull_request_target: 
-    types: [labeled]
+    types: [labeled]s
   schedule:
     - cron: '*/5 * * * *'
 jobs:
