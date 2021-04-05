@@ -85,10 +85,10 @@ jobs:
 
       - run: |
 
-        export IFS="'"
-        for word in $TEXT; do
-          echo "$word"
-        done
+          export IFS="'"
+          for word in $TEXT; do
+            echo "$word"
+          done
               
 
 
