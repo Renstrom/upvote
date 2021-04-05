@@ -35,9 +35,11 @@ jobs:
         uses: peter-evans/find-comment@v1
         id: exist
         with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          repository: github.repository
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: The top-list will be available here once reactions are added to the projects in this thread!
-          repository: github.repository
+          
         if: ${{steps.exist.outpouts.comment-id == 0}}
       - uses: actions/checkout@v2  
       - uses: peter-evans/create-or-update-comment@v1
