@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
+      - uses: actions/checkout@v2  
       - uses: peter-evans/find-comment@v1
         id: exist
         with:
@@ -39,8 +40,7 @@ jobs:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body-includes: The top-list will be available here once reactions are added to the projects in this thread!
           
-        if: ${{steps.exist.outpouts.comment-id == 0}}
-      - uses: actions/checkout@v2  
+        if: ${{steps.exist.outpouts.comment-id == 0}} 
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
