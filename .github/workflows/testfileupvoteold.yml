@@ -78,23 +78,18 @@ jobs:
 
       - run: | 
           while read t; do 
-            
             a=$(echo $t | cut -d':' -f2)
-            echo $a
+            q=$("[]http://")
             if [ $a -gt 0 ]; 
             then
-              echo test
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
               echo ${d} ${b} ${a} >> output.txt
             fi
           done < info.txt
-          echo test1
-          while read p; do 
-              echo $p
-          done < output.txt
-
+      
+      
       
 
 

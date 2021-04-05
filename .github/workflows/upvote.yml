@@ -4,7 +4,7 @@ name: Upvote
 
 on:
   pull_request_target: 
-    types: [labeled]s
+    types: [labeled]
   schedule:
     - cron: '*/5 * * * *'
 jobs:
@@ -71,14 +71,27 @@ jobs:
         id: commentid 
         run: |
           curl -s https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments | jq -c '.[].id' | while read id ; do
-              echo ${id} $( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length) titles  $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) >> output.txt
+              
+              echo ${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length):title:$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) >> output.txt
               echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'"
           done
-          echo test
-
-          while read p; do 
-              echo $p
+      - run: | 
+          while read t; do 
+            a=$(echo $t | cut -d':' -f2)
+            if [ $a -gt 0 ]; 
+            then
+              b=$(echo $t | cut -d':' -f1)
+              c=$(echo $t | cut -d':' -f3)
+              d=$(echo $t | cut -d':' -f4)
+              echo ${d} ${b} ${a} >> result.txt
+            fi
           done < output.txt
+
+        
+
+      
+
+        
            
   update_comment:
     needs: new_issue
