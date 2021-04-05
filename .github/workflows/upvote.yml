@@ -17,14 +17,6 @@ jobs:
           output1: ${{ steps.issue.outputs.number }}
     steps:
       - uses: actions/checkout@v2
-      - uses: nickderobertis/check-if-issue-exists-action@master
-        name: Check if Issue Exists
-        id: check_if_issue_exists
-        with:
-          repo: ${{ github.repository }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Upvote projects - Course Automation"
-          labels:
       - name: Create issue    
         uses: JasonEtco/create-an-issue@v2
         env:
@@ -35,10 +27,11 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}}
+    if: ${{github.run_number == 1}} && ${{github.event_name != 'schedule'}} && ${{https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }} == 0
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
+      - uses: actions/checkout@v2  
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
@@ -71,6 +64,7 @@ jobs:
               echo "'{${id}:$( curl -s -H "Accept: application/vnd.github.squirrel-girl-preview+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id}/reactions | jq 'map(select(.content=="+1"))' | jq length), title: $(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Renstrom/upvote/issues/comments/${id} | jq '.body' | cut -d '\' -f1 | cut -d: -f2 ) }'"
           done
           echo test
+
           while read p; do 
               echo $p
           done < output.txt
