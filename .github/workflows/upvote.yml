@@ -97,14 +97,13 @@ jobs:
               echo ${d} ${e} ${a} >> result.txt
             fi
           done < output.txt
-        name: Read output.txt
+      - name: Read result
         id: package
         uses: juliangruber/read-file-action@v1
         with:
           path: ./result.txt
       - name: Echo package.json
         run: echo ${{ steps.package.outputs.content }}
-
       - name: Update first comment ("Top-list")
         uses: peter-evans/create-or-update-comment@v1
         with:
