@@ -79,7 +79,7 @@ jobs:
       - run: while read t; do echo $(t=${t#*}; echo ${t%\:%}); done <info.txt #Lista med commit-ID --> ANVÄND
       - run: | 
           while read t; 
-            do $(echo cut -d':' -f1) 
+            do $(echo cut -d':' -f2) 
           done < info.txt
 
 
