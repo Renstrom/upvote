@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 name: Upvote
 
 on:
@@ -29,7 +31,10 @@ jobs:
         with:
             update_existing: true
         id: issue
-
+      - name: Send issue-id
+        run: |
+          echo "${{  needs.new_issue.outputs.output1  }}" >> /github/home/data.txt 
+          
   first_comment:
     needs: new_issue
     if: ${{github.run_number == 1}}
