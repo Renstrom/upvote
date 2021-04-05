@@ -13,7 +13,7 @@ jobs:
         uses: peter-evans/find-comment@v1
         id: fc
         with:
-          issue-number: $(cat /github/workspace/data.txt) 
+          issue-number: $(cat /.github/data.txt) 
           comment-author: 'github-actions[bot]'
       - name: Print comment-ID
         run: echo "${{ steps.fc.outputs.comment-id }}"
