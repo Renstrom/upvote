@@ -7,42 +7,38 @@ on:
 jobs:
   new_issue:
     
-      if: ${{ github.event.label.name == 'Upvote - Course Automation' }} && ${{ github.repository == 'Renstrom/upvote'}}
-      runs-on: ubuntu-latest
-      name: Create an issue if none exists
-      steps:
-        - uses: actions/checkout@v2
-        - uses: nickderobertis/check-if-issue-exists-action@master
-          name: Check if Issue Exists
-          id: check_if_issue_exists
-          with:
-            repo: ${{ github.repository }}
-            token: ${{ secrets.GITHUB_TOKEN }}
-            title: "Upvote projects - Course Automation"
-            labels:
-        - name: Create issue    
-          uses: JasonEtco/create-an-issue@v2
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-              update_existing: true
-          id: issue
+    if: ${{ github.event.label.name == 'Upvote - Course Automation' }} && ${{ github.repository == 'Renstrom/upvote'}}
+    runs-on: ubuntu-latest
+    name: Create an issue if none exists
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nickderobertis/check-if-issue-exists-action@master
+        name: Check if Issue Exists
+        id: check_if_issue_exists
+        with:
+          repo: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Upvote projects - Course Automation"
+          labels:
+      - name: Create issue    
+        uses: JasonEtco/create-an-issue@v2
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            update_existing: true
+        id: issue
 
   first_comment:
   
-      if: github.run_number = 1
-      runs-on: ubuntu-latest
-      name: Create first comment
-      steps:
-<<<<<<< HEAD
-        - uses: peter-evans/create-or-update-comment@v1
-=======
+    if: github.run_number = 1
+    runs-on: ubuntu-latest
+    name: Create first comment
+    steps:
       - uses: peter-evans/create-or-update-comment@v1
->>>>>>> c6200865ac7e2d5a56aebe1f51e51f69787ec0f8
-        with:
-        issue-number: ${{ steps.issue.outputs.number }}
-        body: |
-          The top-list will be available here once reactions are added to the projects in this thread!
+      with:
+      issue-number: ${{ steps.issue.outputs.number }}
+      body: |
+        The top-list will be available here once reactions are added to the projects in this thread!
 
   other_comments:
 
