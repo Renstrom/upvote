@@ -81,7 +81,7 @@ jobs:
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
-      - run: echo $TEXT | grep -Po "(?<=\{).*?(?=\:)"
+      - run: echo " $TEXT " | grep -Po "(?<=\{).*?(?=\:)"
 
 
 
