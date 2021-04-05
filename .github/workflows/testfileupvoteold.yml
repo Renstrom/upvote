@@ -83,8 +83,13 @@ jobs:
 
       - run: while read t; do echo $(t=${t#*'{}; echo ${t%}'*}); done <text.txt 
 
-      - run: VAR=$(echo $TEXT |cut -d"'" -f3); echo $VAR    
-      
+      - run: |
+
+        export IFS="'"
+        for word in $TEXT; do
+          echo "$word"
+        done
+              
 
 
 
