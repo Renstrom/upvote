@@ -35,7 +35,7 @@ jobs:
               
   first_comment:
     needs: new_issue
-    if: ${{github.run_number == 1}} && ${{github.event_name == "schedule"}}
+    if: ${{github.run_number == 1}} && ${{github.event_name == 'schedule'}}
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
@@ -47,7 +47,7 @@ jobs:
 
   other_comments:
     needs: new_issue
-    if: ${{github.event_name == "schedule"}}
+    if: ${{github.event_name == 'schedule'}}
     runs-on: ubuntu-latest
     name: Create comment
     steps:
@@ -73,7 +73,7 @@ jobs:
            
   update_comment:
     needs: new_issue
-    if: github.event_name == "schedule"
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     name: Update table every 5 minutes
     steps:
