@@ -32,7 +32,7 @@ jobs:
     name: Create first comment
     steps:
       - uses: actions/checkout@v2  
-        name: Check for first comment
+      - name: Check for first comment
         id: amount
         run: |
           echo $(curl -H ${{https://api.github.com/repos/Renstrom/upvote/issues/${{  needs.new_issue.outputs.output1}}/comments |  jq length }})
