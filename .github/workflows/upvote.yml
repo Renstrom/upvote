@@ -32,9 +32,13 @@ jobs:
             update_existing: true
         id: issue
       - name: Send issue-id
-        run: |
-          echo "${{  needs.new_issue.outputs.output1  }}" >> data.txt
-          
+      - uses: DamianReeves/write-file-action
+        with:
+        path: ../id.txt
+        contents: |
+          echo "Hello World!"
+        write-mode: append
+        
   first_comment:
     needs: new_issue
     if: ${{github.run_number == 1}}
