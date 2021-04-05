@@ -79,7 +79,7 @@ jobs:
         with:
                 path: commitID.txt
       
-      - run: echo $TEXT | cut -d':' -f 0
+      - run: echo $TEXT 
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
