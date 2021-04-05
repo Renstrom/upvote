@@ -81,5 +81,8 @@ jobs:
         env:
           TEXT: ${{ steps.hello.outputs.text }}
 
+      - run: echo $TEXT | awk -F[{:] '{print $2}'
+
+
 
 
