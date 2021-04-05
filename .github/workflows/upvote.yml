@@ -43,7 +43,7 @@ jobs:
             The top-list will be available here once reactions are added to the projects in this thread!
 
   other_comments:
-    needs: [new_issue, first_comment]
+    needs: new_issue
     runs-on: ubuntu-latest
     name: Create comment
     steps:
