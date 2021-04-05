@@ -32,7 +32,7 @@ jobs:
 
   first_comment:
     needs: new_issue
-    if: github.run_number == 1
+    if: ${{github.run_number == 1}}
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
