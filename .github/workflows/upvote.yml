@@ -88,13 +88,14 @@ jobs:
       - run: | 
           while read t; do 
             a=$(echo $t | cut -d':' -f2)
+            echo $a
             if [ $a -ne 0 ]
             then
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
               e=" | [${d}](https://github.com/${{ github.repository }}/issues/${{  needs.new_issue.outputs.output1}}#issuecomment-${b})"
-              echo ${a} ${e} >> result.txt
+              echo ${a} ${e} -k1,1nr -k2,2 | >> result.txt
             fi
           done < output.txt
           sort -t ' ' -k 2 -g result.txt
