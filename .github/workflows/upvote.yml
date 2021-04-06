@@ -99,6 +99,13 @@ jobs:
             fi
           done < output.txt
           sort -t ' ' -k 1 -g result.txt
+          while read s; do
+            echo $s
+          done < result.txt
+          sort -k1,1nr -k2,2 result.txt
+          while read s; do
+            echo $s
+          done < result.txt
       - name: Read result
         id: package
         uses: juliangruber/read-file-action@v1
