@@ -37,7 +37,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
           issue-number: ${{ steps.issue.outputs.number }}
-          body-includes: Top-list (updated approx. every 5 min)
+          body-includes: Toplist (Updated every 5 min)
         
   # Second job: Triggered on a PR labeled with 'Upvote - Course Automation' to the repository listed on line 16           
   first_comment:
@@ -52,7 +52,7 @@ jobs:
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body: |
-            Top-list (updated approx. every 5 min)
+            Toplist (Updated every 5 min)
 
   # Third job: Triggered on a PR labeled with 'Upvote - Course Automation' to the repository listed on line 16       
   other_comments:
@@ -111,6 +111,11 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./resultSorted.txt
+          
+
+
+
+
           
         # Updates the "Top-list with a table containing the outputs given when reading the result"
       - name: Update first comment ("Top-list")
