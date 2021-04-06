@@ -43,7 +43,7 @@ jobs:
   first_comment:
     needs: new_issue
     # The "Top-list" is created if there is no first comment
-    if: ${{needs.new_issue.outputs.output2 == 0}}  && ${{ github.repository == 'Renstrom/upvote'}} && ${{ github.event.label.name == 'Upvote - Course Automation' }}
+    if: ${{needs.new_issue.outputs.output2 == 0}}  && github.repository == 'Renstrom/upvote' && $ github.event.label.name == 'Upvote - Course Automation' 
     runs-on: ubuntu-latest
     name: Create first comment
     steps:
@@ -57,7 +57,7 @@ jobs:
   # Third job: Triggered on a PR labeled with 'Upvote - Course Automation' to the repository listed on line 16       
   other_comments:
     needs: new_issue
-    if: ${{github.event_name != 'schedule'}} && ${{ github.event.label.name == 'Upvote - Course Automation' }} && ${{ github.repository == 'Renstrom/upvote'}}
+    if: ${{github.event_name != 'schedule'}} && github.event.label.name == 'Upvote - Course Automation' && github.repository == 'Renstrom/upvote'
     runs-on: ubuntu-latest
     # Creates a comment in the issue thread including the title of the PR, a link to the PR and a link to the repository
     name: Create comment
