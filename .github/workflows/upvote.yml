@@ -69,10 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      
-
-        
-           
   update_comment:
     needs: new_issue
     if: ${{github.event_name == 'schedule'}}
@@ -107,8 +103,11 @@ jobs:
         with:
           comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
-            #Toplist (Updated every 5 min):
-            ###Points | Titles
+          
+            **Top-list (updated every 5 min)**
+            
+            Points | Title
+            ------------ | -------------
             ${{ steps.package.outputs.content }}        
 
 
