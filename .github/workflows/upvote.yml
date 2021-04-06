@@ -75,7 +75,7 @@ jobs:
            
   update_comment:
     needs: new_issue
-    
+    if: ${{github.event_name == 'schedule'}}
     runs-on: ubuntu-latest
     name: Update table every 5 minutes
     steps:
@@ -94,7 +94,7 @@ jobs:
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
               e="[${d}](https://github.com/${{ github.repository }}/issues/${{  needs.new_issue.outputs.output1}}#issuecomment-${b})"
-              echo ${e} ${a} >> result.txt
+              echo ${a} ${e} >> result.txt
             fi
           done < output.txt
       - name: Read result
