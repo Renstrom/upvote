@@ -46,8 +46,7 @@ jobs:
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
-          body: |
-            Top-list (updated every 5 min)
+          body: Top-list (updated every 5 min)
 
 
   other_comments:
@@ -105,12 +104,10 @@ jobs:
           comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
             Top-list (updated every 5 min)
-        
             Points | Title
             ------------ | -------------
             ${{ steps.package.outputs.content }}     
-            
-          edit-mode: replace
-          reactions: 
+
+          edit-mode: replace 
     
 
