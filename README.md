@@ -1,4 +1,4 @@
-# Course Automation: Upvote other students’ work 
+# Course Automation: Upvote other students’ work    
  
 ## Members
 
