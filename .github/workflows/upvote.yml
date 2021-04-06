@@ -97,6 +97,7 @@ jobs:
               echo ${a} ${e} >> result.txt
             fi
           done < output.txt
+          sort -t ' ' -k 2 -g result.txt
       - name: Read result
         id: package
         uses: juliangruber/read-file-action@v1
