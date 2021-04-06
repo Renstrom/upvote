@@ -88,8 +88,8 @@ jobs:
       - run: | 
           while read t; do 
             a=$(echo $t | cut -d':' -f2)
-            echo $a
-            if [ $a -gt 0 ]
+            b=a==0
+            if [ b ]
             then
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
