@@ -69,10 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      
-
-        
-           
   update_comment:
     needs: new_issue
     if: ${{github.event_name == 'schedule'}}
