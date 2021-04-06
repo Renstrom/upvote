@@ -87,9 +87,8 @@ jobs:
           done
       - run: | 
           while read t; do 
-            a=$(echo $t | cut -d':' -f2)
-            f=a!=0
-            if [ !$f ]
+            let a=$(echo $t | cut -d':' -f2)
+            if [ $a != 0 ]
             then
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
