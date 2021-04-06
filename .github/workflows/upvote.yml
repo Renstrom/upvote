@@ -33,7 +33,8 @@ jobs:
           repository: ${{github.repository}}
           issue-number: ${{ steps.issue.outputs.number }}
           body-includes: Toplist (Updated every 5 min)
-        
+        run: |
+          echo ${{ steps.fc.outputs.comment-id}}
               
   first_comment:
     needs: new_issue
