@@ -103,8 +103,11 @@ jobs:
         with:
           comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
+          
             **Top-list (updated every 5 min)**
-            **Points | Title**
+            
+            Points | Title
+            ------------ | -------------
             ${{ steps.package.outputs.content }}        
 
 
