@@ -32,7 +32,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
           issue-number: ${{ steps.issue.outputs.number }}
-          body-includes: Toplist (Updated every 5 min)
+          body-includes: |
+            Toplist (Updated every 5 min)
       - run: |
           echo ${{ steps.fc.outputs.comment-id}}
               
@@ -46,7 +47,8 @@ jobs:
       - uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
-          body: Top-list (updated every 5 min)
+          body: |
+            Top-list (updated every 5 min)
 
 
   other_comments:
