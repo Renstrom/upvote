@@ -93,8 +93,8 @@ jobs:
               b=$(echo $t | cut -d':' -f1)
               c=$(echo $t | cut -d':' -f3)
               d=$(echo $t | cut -d':' -f4)
-              e="[here](https://github.com/${{ github.repository }}/issues/${{  needs.new_issue.outputs.output1}}#issuecomment-${b})"
-              echo ${d} ${e} ${a} >> result.txt
+              e="[${d}](https://github.com/${{ github.repository }}/issues/${{  needs.new_issue.outputs.output1}}#issuecomment-${b})"
+              echo ${e} ${a} >> result.txt
             fi
           done < output.txt
       - name: Read result
