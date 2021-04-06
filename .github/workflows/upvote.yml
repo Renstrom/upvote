@@ -97,13 +97,13 @@ jobs:
               echo ${a} ${e}  >> result.txt
             fi
           done < output.txt
-          sort -k1,1nr -k2,2 result.txt >> result.txt
+          sort -k1,1nr -k2,2 result.txt >> resultSorted.txt
           
       - name: Read result
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./result.txt
+          path: ./resultSorted.txt
       - name: Update first comment ("Top-list")
         uses: peter-evans/create-or-update-comment@v1
         with:
