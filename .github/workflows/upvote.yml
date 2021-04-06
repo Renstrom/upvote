@@ -32,10 +32,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{github.repository}}
           issue-number: ${{ steps.issue.outputs.number }}
-          body-includes: |
-            Toplist (Updated every 5 min)
-      - run: |
-          echo ${{ steps.fc.outputs.comment-id}}
+          body-includes: Toplist (Updated every 5 min)
+        
               
   first_comment:
     needs: new_issue
@@ -48,7 +46,7 @@ jobs:
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body: |
-            Top-list (updated every 5 min)
+            Toplist (Updated every 5 min)
 
 
   other_comments:
@@ -71,6 +69,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
+      
+
+        
+           
   update_comment:
     needs: new_issue
     if: ${{github.event_name == 'schedule'}}
@@ -105,11 +107,11 @@ jobs:
         with:
           comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
-            Top-list (updated every 5 min)
-            Points | Title
-            ------------ | -------------
-            ${{ steps.package.outputs.content }}     
+            #Toplist (Updated every 5 min):
+            ###Points | Titles
+            ${{ steps.package.outputs.content }}        
 
-          edit-mode: replace 
+
+          edit-mode: replace
+          reactions: 
     
-
