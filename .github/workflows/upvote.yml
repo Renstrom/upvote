@@ -47,7 +47,7 @@ jobs:
         with:
           issue-number: ${{ needs.new_issue.outputs.output1 }}
           body: |
-            Toplist (Updated every 5 min)
+            Top-list (updated every 5 min)
 
 
   other_comments:
@@ -104,8 +104,7 @@ jobs:
         with:
           comment-id: ${{ needs.new_issue.outputs.output2 }}
           body: |
-          
-            **Top-list (updated every 5 min)**
+            Top-list (updated every 5 min)
             
             Points | Title
             ------------ | -------------
