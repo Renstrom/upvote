@@ -88,7 +88,6 @@ jobs:
       - run: | 
           while read t; do 
             a=$(echo $t | cut -d':' -f2)
-            echo $a
             if [ $a -ne 0 ]
             then
               b=$(echo $t | cut -d':' -f1)
@@ -98,10 +97,12 @@ jobs:
               echo ${a} ${e}  >> result.txt
             fi
           done < output.txt
+          echo firstsort
           sort -t ' ' -k 1 -g result.txt
           while read s; do
             echo $s
           done < result.txt
+          echo secondsort
           sort -k1,1nr -k2,2 result.txt
           while read s; do
             echo $s
