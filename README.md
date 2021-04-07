@@ -1,4 +1,4 @@
-# Course Automation: Upvote other students’ work
+# Course Automation: Upvote other students’ work    
  
 ## Members
 
@@ -11,7 +11,7 @@ We would like to integrate a functionality that enables students to upvote other
  
 The action should perform the following:  
  
-* When a specific label is included in a PR, create a comment on an issue with details from the Course Automation-folder (README-title and URL to project repository).
+* When a specific label is included in a PR, create a comment on an issue with details from the Course Automation-folder (README.md-title and URL to project repository).
 * A comment is added to the PR when a comment has been added to the issue. A link to the issue-comment is included.
 * This enables people to upvote projects, by inserting :thumbsup: on the comments.
 * The upvotes are collected and visualized in a table, in the form of a “Top-list”.
