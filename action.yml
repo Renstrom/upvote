@@ -1,0 +1,11 @@
+name: "Upvote different people work"
+description: "Setup upvote "
+author: "Anders Renström & Dina Lerjevik"
+inputs:
+  repository:
+    description: "Repository name that gets checked"
+    required: true
+  label_name:
+    description: "Label name"
+    required: true
+  
